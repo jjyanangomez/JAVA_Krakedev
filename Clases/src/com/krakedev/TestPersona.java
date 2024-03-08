@@ -4,6 +4,8 @@ public class TestPersona {
 	public static void main(String[] args) {
 		//Esto es un comentario
 		Persona p = new Persona(); //1 y 2. crear una variable e intanciar la clase persona
+		Persona p3 = new Persona("Juan Yanangomez");
+		Persona p4 = new Persona("Juan Yanangomez",26,1.68);
 		//3.Agregar valor al objeto instanciado
 		p.setNombre("Albert Wesker");
 		p.setEdad(45);;

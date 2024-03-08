@@ -5,6 +5,14 @@ public class Productos {
 	private String descripcion;
 	private double precio;
 	private int stockActual;
+	
+	/**    Constructor con parametros      **/
+	public Productos(String nombre, String descripcion, double precio, int stockActual) {
+		Nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.stockActual = stockActual;
+	}
 	public String getNombre() {
 		return Nombre;
 	}

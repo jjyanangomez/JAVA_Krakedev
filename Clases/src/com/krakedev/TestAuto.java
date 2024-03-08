@@ -4,16 +4,18 @@ public class TestAuto {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Auto a1 = new Auto();
-		Auto a2 = new Auto();
+		/******* Se invoca al constructor con parametros en donde se 
+		 * 		ingresa los parametros para inicializar el objeto*******/
+		Auto a1 = new Auto("Toyota",2019,15.900);
+		Auto a2 = new Auto("Hyundai",2019,38.500);
 		//Atributos del carro 1
-		a1.setMarca("Toyota");;
+		/*a1.setMarca("Toyota");;
 		a1.setAnio(2019);;
-		a1.setPrecio(15.900);
+		a1.setPrecio(15.900);*/
 		//Atributos del carro 2
-		a2.setMarca("Hyundai");
+		/*a2.setMarca("Hyundai");
 		a2.setAnio(2019);
-		a2.setPrecio(38.500);
+		a2.setPrecio(38.500);*/
 		//Presentar los atributos en consola
 		System.out.println("-------------- Auto 1 ---------------");
 		System.out.println("Marca:"+a1.getMarca());

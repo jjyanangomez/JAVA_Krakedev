@@ -5,6 +5,11 @@ public class Rectangulo {
 	private int altura;
 	
 	
+	/**    Constructor con parametros      **/
+	public Rectangulo(int base, int altura) {
+		this.base = base;
+		this.altura = altura;
+	}
 	
 	public int getBase() {
 		return base;
