@@ -5,28 +5,28 @@ public class TestPersona {
 		//Esto es un comentario
 		Persona p = new Persona(); //1 y 2. crear una variable e intanciar la clase persona
 		//3.Agregar valor al objeto instanciado
-		p.nombre ="Albert Wesker";
-		p.edad = 45;
-		p.estatura = 1.90;
-		System.out.println("Nombre:"+p.nombre);
-		System.out.println("Edad:"+p.edad);
-		System.out.println("Estatura:"+p.estatura);
+		p.setNombre("Albert Wesker");
+		p.setEdad(45);;
+		p.setEstatura(1.90);;
+		System.out.println("Nombre:"+p.getNombre());
+		System.out.println("Edad:"+p.getEdad());
+		System.out.println("Estatura:"+p.getEstatura());
 		System.out.println("--------------------------------------");
 		Persona p2 = new Persona();
-		p2.nombre ="Jill Valentine";
-		p2.edad = 35;
-		p2.estatura = 1.75;
-		System.out.println("Nombre:"+p2.nombre);
-		System.out.println("Edad:"+p2.edad);
-		System.out.println("Estatura:"+p2.estatura);
+		p2.setNombre("Jill Valentine");
+		p2.setEdad(35);
+		p2.setEstatura(1.75);
+		System.out.println("Nombre:"+p2.getNombre());
+		System.out.println("Edad:"+p2.getEdad());
+		System.out.println("Estatura:"+p2.getEstatura());
 		System.out.println("--------------------------------------");
 		//4. Cambiar los atributos
-		p.nombre ="Mario";
-		p.edad = 45;
-		p.estatura = 1.56;
+		p.setNombre("Mario");
+		p.setEdad(45);
+		p.setEstatura(1.56);
 		//5. Acceder a los atributos
-		System.out.println("Nombre:"+p.nombre);
-		System.out.println("Edad:"+p.edad);
-		System.out.println("Estatura:"+p.estatura);
+		System.out.println("Nombre:"+p.getNombre());
+		System.out.println("Edad:"+p.getEdad());
+		System.out.println("Estatura:"+p.getEstatura());
 	}
 }

@@ -7,9 +7,9 @@ public class TestCuadrado {
 		Cuadrado c1 =new Cuadrado();
 		Cuadrado c2 =new Cuadrado();
 		Cuadrado c3 =new Cuadrado();
-		c1.lado=4;
-		c2.lado=8;
-		c3.lado=2;
+		c1.setLado(4);
+		c2.setLado(8);
+		c3.setLado(2);
 		System.out.println("---------Area del Cuadrado 1---------");
 		double calcularAreaCuadrado1 = c1.calcularArea();
 		double calcularPerimetroCuadrado1 = c1.calcularPerimetro();
