@@ -47,18 +47,18 @@ public class Contacto {
 	}
 	
 	public void imprimir() {
-		System.out.println("\nCédula: "+cedula
-				+"\nNombre: "+nombre
-				+"\nApellido: "+apellido
-				+"\nDireccion:\n Calle Principal"+direccion.getCallePrincipal()
-				+"\n Calle Secundaria: "+direccion.getCalleSecundaria());
-		/*if(direccion== null) {
+		if(direccion== null) {
 			System.out.println("***"+nombre+" "+apellido+"***"
 					+"\nNo tiene asociada una direccion");
 		}else {
-			System.out.println("***"+nombre+" "+apellido+"***"
-					+"\nDireccion: "+direccion.getCallePrincipal()+" y "+direccion.getCalleSecundaria());
-		}*/
+			/*System.out.println("***"+nombre+" "+apellido+"***"
+					+"\nDireccion: "+direccion.getCallePrincipal()+" y "+direccion.getCalleSecundaria());*/
+			System.out.println("\nCédula: "+cedula
+					+"\nNombre: "+nombre
+					+"\nApellido: "+apellido
+					+"\nDireccion:\n Calle Principal"+direccion.getCallePrincipal()
+					+"\n Calle Secundaria: "+direccion.getCalleSecundaria());
+		}
 	}
 	public void agregarTelefono(Telefono telf) {
 		listTelefonos.add(telf);
