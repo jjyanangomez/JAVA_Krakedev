@@ -1,11 +1,15 @@
 package com.cmc.evaluacion.entidades;
 
+import java.util.ArrayList;
+
 public class Prestamo {
 	private double monto;
 	private double interes;
 	private int plazo;
+	private ArrayList<Cuota> cuotas; 
 	
 	public Prestamo(double monto, double interes, int plazo) {
+		cuotas = new ArrayList<Cuota>();
 		this.monto = monto;
 		this.interes = interes;
 		this.plazo = plazo;
@@ -29,6 +33,11 @@ public class Prestamo {
 	public void setPlazo(int plazo) {
 		this.plazo = plazo;
 	}
+	public ArrayList<Cuota> getCuotas() {
+		return cuotas;
+	}
 	
-	
+	public void mostrarPrestamo() {
+		System.out.println("[ "+"monto= "+getMonto()+", interes="+getInteres()+", plazo="+getPlazo()+"]");
+	}
 }
