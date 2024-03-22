@@ -20,7 +20,7 @@ public class AdminPersona {
 		PreparedStatement ps= null;
 		LOGGER.trace("Persona a insertar: "+per);
 		try {
-			connection =  ConexionBDD.conectar();
+			connection =  ConexionBDD.conectar("postgres");
 			ps = connection.prepareStatement("insert into personas (cedula,nombre,apellido,estado_civil_codigo,numero_hijos,estatura,cantidad_ahorrada,fecha_nacimiento,hora_nacimiento)"
 					+ "			values(?,?,?,?,?,?,?,?,?);");
 			ps.setString(1, per.getCedula());
@@ -54,7 +54,7 @@ public class AdminPersona {
 		PreparedStatement ps= null;
 		LOGGER.trace("Persona a actualizar: "+per);
 		try {
-			connection =  ConexionBDD.conectar();
+			connection =  ConexionBDD.conectar("postgres");
 			ps = connection.prepareStatement("UPDATE personas"
 					+ " SET nombre = ?,"
 					+ " apellido = ?,"
@@ -99,7 +99,7 @@ public class AdminPersona {
 		PreparedStatement ps= null;
 		LOGGER.trace("Persona a eliminar con cedula: "+per.getCedula());
 		try {
-			connection =  ConexionBDD.conectar();
+			connection =  ConexionBDD.conectar("postgres");
 			ps = connection.prepareStatement("delete from personas where cedula= ?;");	
 			ps.setString(1, per.getCedula());
 			
