@@ -21,6 +21,7 @@ public class TestAdminPersonas {
 			 p.setCantidad_ahorrada(new BigDecimal(5000));
 			 p.setNumero_hijos(50);
 			 AdminPersona.insertar(p);
+			 System.out.println("Persona insertada");
 		} catch (Exception e) {
 			
 			System.out.println("Error en el sistema: "+e.getMessage());
