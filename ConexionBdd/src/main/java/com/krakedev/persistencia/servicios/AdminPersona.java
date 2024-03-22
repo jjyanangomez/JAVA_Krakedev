@@ -1,14 +1,18 @@
 package com.krakedev.persistencia.servicios;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.ArrayList;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.krakedev.persistencia.entidades.EstadoCivil;
 import com.krakedev.persistencia.entidades.Persona;
 import com.krakedev.persistencia.utils.ConexionBDD;
 
@@ -117,5 +121,140 @@ public class AdminPersona {
 			}
 		}
 		
+	}
+	
+	public static ArrayList<Persona> buscarPorNombre(String nombreBusqueda) throws Exception{
+		ArrayList<Persona> personas = new ArrayList<Persona>();
+		Connection connection = null;
+		PreparedStatement ps= null;
+		ResultSet rs= null;
+		try {
+			connection =  ConexionBDD.conectar("postgres");
+			ps = connection.prepareStatement("Select * from personas where nombre like ?;");
+			ps.setString(1, "%"+nombreBusqueda+"%");
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				String nombre = rs.getString("nombre");
+				String cedula = rs.getString("cedula");
+				Persona p = new Persona();
+				p.setCedula(cedula);
+				p.setNombre(nombre);
+				personas.add(p);
+			}
+			
+		} catch (Exception e) {
+			LOGGER.error("Error al consultar: ", e);
+			throw new Exception("Error al consultar el nombre");
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				LOGGER.error("Error con la base de datos", e);
+				throw new Exception("Error con la base de datos");
+			}
+		}
+		
+		return personas;
+	}
+	/*
+	 * 
+	 * 
+	 *  Metodos solicitados para el reto 34
+	 * 
+	 * Metodos que devuelva todas las personas y metodo que busque por clave primaria(Cedula)
+	 * 
+	 */
+	
+	//Sacar todas las personas de la base de datos
+	public static ArrayList<Persona> ListaPersonas() throws Exception{
+		ArrayList<Persona> personas = new ArrayList<Persona>();
+		Connection connection = null;
+		PreparedStatement ps= null;
+		ResultSet rs= null;
+		try {
+			connection =  ConexionBDD.conectar("postgres");
+			ps = connection.prepareStatement("Select * from personas;");
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				String nombre = rs.getString("nombre");
+				String cedula = rs.getString("cedula");
+				String apellido = rs.getString("apellido");
+				String codigo = rs.getString("estado_civil_codigo");
+				EstadoCivil ec = new EstadoCivil(codigo,"");
+				int numeroHijos = rs.getInt("numero_hijos");
+				String cantidad = rs.getString("cantidad_ahorrada");
+				Persona p = new Persona(cedula, nombre, apellido, ec);
+				p.setNumero_hijos(numeroHijos);
+				
+				if(cantidad==null) {
+					cantidad = "0.0";
+				}
+				cantidad = cantidad.replaceAll("[^0-9\\.]", "");
+				LOGGER.trace("Cantidad Ahorrada: "+cantidad);
+				p.setCantidad_ahorrada(new BigDecimal(cantidad));
+				personas.add(p);
+			}
+			
+		} catch (Exception e) {
+			LOGGER.error("Error al consultar: ", e);
+			throw new Exception("Error al traer todos las personas");
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				LOGGER.error("Error con la base de datos", e);
+				throw new Exception("Error con la base de datos");
+			}
+		}
+		
+		return personas;
+	}
+	
+	//Buscar a persona por su cedula
+	public static Persona buscarPorCedula(String cedula) throws Exception{
+		Persona objPersona = new Persona();
+		Connection connection = null;
+		PreparedStatement ps= null;
+		ResultSet rs= null;
+		try {
+			connection =  ConexionBDD.conectar("postgres");
+			ps = connection.prepareStatement("Select * from personas Where cedula = ?;");
+			ps.setString(1, cedula);
+			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
+				String codigo = rs.getString("estado_civil_codigo");
+				EstadoCivil ec = new EstadoCivil(codigo,"");
+				int numeroHijos = rs.getInt("numero_hijos");
+				String cantidad = rs.getString("cantidad_ahorrada");
+				Persona p = new Persona(cedula, nombre, apellido, ec);
+				p.setNumero_hijos(numeroHijos);
+				
+				if(cantidad==null) {
+					cantidad = "0.0";
+				}
+				cantidad = cantidad.replaceAll("[^0-9\\.]", "");
+				LOGGER.trace("Cantidad Ahorrada: "+cantidad);
+				p.setCantidad_ahorrada(new BigDecimal(cantidad));
+				objPersona = p;
+			}
+			
+		} catch (Exception e) {
+			LOGGER.error("Error al consultar la persona por su cedula: ", e);
+			throw new Exception("Error al traer la persona por su cedula");
+		}finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				LOGGER.error("Error con la base de datos", e);
+				throw new Exception("Error con la base de datos");
+			}
+		}
+		
+		return objPersona;
 	}
 }
